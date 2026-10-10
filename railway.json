@@ -1,0 +1,18 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "dockerfile",
+    "context": "."
+  },
+  "deploy": {
+    "restartPolicyType": "on_failure",
+    "restartPolicyMaxRetries": 5,
+    "numReplicas": 1,
+    "startCommand": "gunicorn app:app --bind 0.0.0.0:$PORT"
+  },
+  "variables": {
+    "FLASK_ENV": "production",
+    "FLASK_DEBUG": "False",
+    "PORT": "5000"
+  }
+}
